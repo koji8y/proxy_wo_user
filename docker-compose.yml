@@ -1,0 +1,14 @@
+services:
+  proxy_wo_user:
+    build:
+      context: .
+      target: proxy_wo_user
+      args:
+        proxy: "${proxy:-}"
+    restart: "${restart:-no}"
+    ports:
+      - "3128:3128"
+    command:
+    - tail
+    - "-f"
+    - /dev/null
