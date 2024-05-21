@@ -4,11 +4,11 @@ services:
       context: .
       target: proxy_wo_user
       args:
-        proxy: "${proxy:-}"
+        build_time_proxy: "${build_time_proxy:-}"
     restart: "${restart:-no}"
+    environment:
+      proxy_user: ${proxy_user}
+      proxy_pwd: ${proxy_pwd}
+      proxy_host_port: ${proxy_host_port}
     ports:
       - "3128:3128"
-    command:
-    - tail
-    - "-f"
-    - /dev/null

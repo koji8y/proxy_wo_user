@@ -1,0 +1,15 @@
+# Proxy configuration in the form of http(s)://[username:password@]proxy_host:port/
+# or empty
+#build_time_proxy=
+
+# User for the proxy to be passed
+# proxy_user=(user name for proxy)
+
+# Password for the proxy to be passed
+#proxy_pwd=(password for proxy)
+
+# Host name and port number for the proxy to be passed in the form of hostname:port_number or hostname
+#proxy_host_port=hostname:port_number (or hostname)
+
+# Restart docker container after reboot if the value is "always"; Keep stopping if it is "no"
+#restart=always or no
