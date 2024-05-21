@@ -1,18 +1,18 @@
 FROM ubuntu:24.04 as builder
 
-ARG proxy
+ARG build_time_proxy
 ENV HOME=/root
-ENV http_proxy=$proxy
-ENV https_proxy=$proxy
-ENV HTTP_PROXY=$proxy
-ENV HTTPS_PROXY=$proxy
+ENV http_proxy=$build_time_proxy
+ENV https_proxy=$build_time_proxy
+ENV HTTP_PROXY=$build_time_proxy
+ENV HTTPS_PROXY=$build_time_proxy
 
 RUN : set proxy \
   && set -ex \
   && rm -f /etc/localtime \
   && ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
-  && (test -z "$proxy" || echo 'Acquire::http::Proxy "'"$proxy"'";' >> /etc/apt/apt.conf.d/proxy.conf) \
-  && (test -z "$proxy" || echo 'Acquire::https::Proxy "'"$proxy"'";' >> /etc/apt/apt.conf.d/proxy.conf)
+  && (test -z "$build_time_proxy" || echo 'Acquire::http::Proxy "'"$build_time_proxy"'";' >> /etc/apt/apt.conf.d/proxy.conf) \
+  && (test -z "$build_time_proxy" || echo 'Acquire::https::Proxy "'"$build_time_proxy"'";' >> /etc/apt/apt.conf.d/proxy.conf)
 RUN : install requred packages \
   && set -ex \
   && apt update \
